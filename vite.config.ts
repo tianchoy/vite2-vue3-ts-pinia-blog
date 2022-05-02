@@ -1,24 +1,25 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import styleImport, { VantResolve } from 'vite-plugin-style-import';
 
-import { createStyleImportPlugin, NutuiResolve } from 'vite-plugin-style-import'
-
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    createStyleImportPlugin({
-      resolves: [
-        NutuiResolve(),
-      ]
-    }),
-  ],
-  css: {
-    preprocessorOptions: {
-      scss: {
-        // 配置 nutui 全局 scss 变量
-        additionalData: `@import "@nutui/nutui/dist/styles/variables.scss";`
+  base: './',
+  mode: 'development',
+  server: {
+    proxy: {
+      '/api': {
+        target:'http://tianchoy.com/api/',//正式服务器
+        //target: 'http://localhost/apis/',//测试服务器
+        changeOrigin: true,
+        ws: true,
+        rewrite: path => path.replace(/^\/api/, '')
       }
     }
-  }
+  },
+  plugins: [
+    vue(),
+    styleImport({
+      resolves: [VantResolve()],
+    }),
+  ]
 })

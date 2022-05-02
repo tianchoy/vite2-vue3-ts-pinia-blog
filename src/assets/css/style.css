@@ -1,0 +1,10 @@
+html,body{
+    padding: 0;
+    margin: .5rem .3rem;
+}
+.title {
+    font-size: .6rem;
+    color: #1989fa;
+    text-decoration: none;
+    text-align: center;
+}
