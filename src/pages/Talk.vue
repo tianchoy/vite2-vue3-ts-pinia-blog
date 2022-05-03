@@ -1,10 +1,13 @@
 <script setup lang='ts'>
-
+import {ref} from 'vue'
+import TopNav from '../components/Bar/TopBar.vue';
+const title = ref('说说')
 </script>
            
 <template>
-    <div>
-        说说
+    <div class="container">
+        <TopNav :title="title" :left-arrow="false" />
+        
     </div>
 </template>
            

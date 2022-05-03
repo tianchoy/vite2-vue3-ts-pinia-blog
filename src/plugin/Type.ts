@@ -23,3 +23,8 @@ export type replyData = {
     repl_content?: any;
     repl_time?: any;
 }
+
+export type artPostType = {
+    name:string,
+    content:string
+}

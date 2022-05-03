@@ -3,9 +3,6 @@ import axios from 'axios'
 let instance = axios.create({
     baseURL: '/api/',
     timeout: 3000,
-    headers: {
-        'Content-Type': 'application/json'
-    }
 })
 
 

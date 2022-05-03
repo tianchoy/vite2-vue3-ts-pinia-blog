@@ -6,17 +6,34 @@ import detailStore from '../store/Detail';
 import CommentForm from '../components/Comment/CommentForm.vue';
 import { storeToRefs } from 'pinia';
 import CommentList from '../components/Comment/CommentList.vue';
+import moment from 'moment'
+import qs from 'qs'
+
 const detail = detailStore()
-const { Loading, artDetailData, replyData ,cityName } = storeToRefs(detail)
+const { Loading, artDetailData, replyData } = storeToRefs(detail)
 const router = useRoute()
 let id: number = Number(router.params.id)
+const now = new Date
+const nowTime = moment(now).format('YYYY-MM-DD HH:mm:ss')
 onBeforeMount(() => {
     detail.getArtDetailData(id)
     detail.getArtCommentList(id)
 })
+const getFormContent = (val: any) => {
 
-const getFormContent = (val: object) => {
-    console.log(val)
+    let postData = qs.stringify({
+        id: id,
+        name: val["name"],
+        content:val["content"],
+        city: returnCitySN["cname"],
+        time: nowTime
+    })
+    console.log(postData)
+    detail.sendArtComment(postData).then(()=>{
+        
+        detail.getArtCommentList(id)
+    })
+
 }
 </script>
            

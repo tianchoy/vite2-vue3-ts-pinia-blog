@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ArtDetailData,replyData } from '../plugin/Type'
-import { getArtDetail, getNewsReply} from '../Api/Detail'
+import { getArtDetail, getNewsReply,postComment} from '../Api/Detail'
 
 const detailStore = defineStore({
     id: 'detail',
@@ -25,7 +25,10 @@ const detailStore = defineStore({
         },
         
         //发布评论
-
+        async sendArtComment(postData:string){
+            const res = await postComment(postData)
+            console.log(res)
+        }
     }
 })
 

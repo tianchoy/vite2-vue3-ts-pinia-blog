@@ -11,13 +11,16 @@
     "amfe-flexible": "^2.2.1",
     "autoprefixer": "^10.4.6",
     "axios": "^0.27.2",
+    "moment": "^2.29.3",
     "pinia": "^2.0.13",
+    "qs": "^6.10.3",
     "vant": "^3.4.9",
     "vue": "^3.2.25",
     "vue-router": "^4.0.14"
   },
   "devDependencies": {
     "@types/node": "^17.0.31",
+    "@types/qs": "^6.9.7",
     "@vitejs/plugin-vue": "^2.3.1",
     "consola": "^2.15.3",
     "postcss-pxtorem": "^6.0.0",
