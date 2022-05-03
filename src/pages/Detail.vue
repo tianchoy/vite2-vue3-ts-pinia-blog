@@ -1,55 +1,58 @@
 <script setup lang='ts'>
-import TopNav from '../components/TopNav.vue'
-import { watchEffect, reactive, ref } from 'vue'
+import TopNav from '../components/Bar/TopBar.vue';
+import { onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router'
-import { getArtDetail } from '../Api/Index'
+import detailStore from '../store/Detail';
+import CommentForm from '../components/Comment/CommentForm.vue';
+import { storeToRefs } from 'pinia';
+import CommentList from '../components/Comment/CommentList.vue';
+const detail = detailStore()
+const { Loading, artDetailData, replyData ,cityName } = storeToRefs(detail)
 const router = useRoute()
-console.log(typeof router.params.id)
 let id: number = Number(router.params.id)
+onBeforeMount(() => {
+    detail.getArtDetailData(id)
+    detail.getArtCommentList(id)
+})
 
-
-type ArtDetailData = {
-    title: String,
-    content: string,
-    time: string,
-    hits: string,
-    art_love: string
+const getFormContent = (val: object) => {
+    console.log(val)
 }
-
-const state = reactive({
-    loading:true,
-    //文章详情
-    artDetailData: <ArtDetailData>{},
-    //获取评论列表
-    replyData: [],
-    //提交回复数据
-    formData: {
-        id: '',
-        username: '',
-        comContent: '',
-        city: '',
-        time: ''
-    },
-    //验证码
-    verify: "",
-})
-watchEffect(async () => {
-    const res = await getArtDetail(id)
-    state.artDetailData = res.data
-    state.loading = false
-})
 </script>
            
 <template>
     <div class="container">
-        <van-loading size="24px" vertical v-if="state.loading">加载中...</van-loading>
-        <TopNav :title="state.artDetailData.title" :left-arrow="true" />
+        <van-loading size="24px" vertical v-if="Loading">加载中...</van-loading>
+        <TopNav :title="artDetailData.title" :left-arrow="true" />
         <div class="content">
-            <p class="title">{{ state.artDetailData.title }}</p>
-            <p v-html="state.artDetailData.content"></p>
+            <p v-html="artDetailData.content"></p>
         </div>
+        <van-divider dashed />
+        <ul class="other">
+            <li>
+                <van-icon name="clock-o" />{{ artDetailData.time }}
+            </li>
+            <li>
+                <van-icon name="like" />{{ artDetailData.art_love }}
+            </li>
+            <li>
+                <van-icon name="eye" />{{ artDetailData.hits }}
+            </li>
+        </ul>
+        <CommentForm @commentFormContent="getFormContent" />
+        <CommentList :commentListContent="replyData" />
     </div>
 </template>
            
 <style scoped lang='scss'>
+.content {
+    font-size: .4rem;
+}
+
+.other {
+    display: flex;
+    justify-content: space-between;
+    font-size: .3rem;
+    margin-bottom: .5rem;
+}
 </style>

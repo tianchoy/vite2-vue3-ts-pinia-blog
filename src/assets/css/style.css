@@ -1,10 +1,20 @@
-html,body{
+html,
+body {
     padding: 0;
     margin: .5rem .3rem;
 }
+
+.container{
+    margin-bottom: 1.5rem;
+}
 .title {
-    font-size: .6rem;
+    font-size: .5rem;
     color: #1989fa;
     text-decoration: none;
     text-align: center;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
