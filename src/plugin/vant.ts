@@ -11,7 +11,8 @@ import {
     Form,
     Field,
     CellGroup,
-    Dialog
+    Dialog,
+    Pagination
 } from 'vant';
 const vant = {
     install(app: any) {
@@ -28,6 +29,7 @@ const vant = {
         app.use(Field)
         app.use(CellGroup)
         app.use(Dialog)
+        app.use(Pagination)
     }
 }
 export default vant

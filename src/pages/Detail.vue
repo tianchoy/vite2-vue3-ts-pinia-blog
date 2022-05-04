@@ -28,12 +28,13 @@ const getFormContent = (val: any) => {
         city: returnCitySN["cname"],
         time: nowTime
     })
-    console.log(postData)
     detail.sendArtComment(postData).then(()=>{
         
         detail.getArtCommentList(id)
     })
-
+}
+const artLike=(id:number)=>{
+    detail.postArtLike(id)
 }
 </script>
            
@@ -47,13 +48,13 @@ const getFormContent = (val: any) => {
         <van-divider dashed />
         <ul class="other">
             <li>
-                <van-icon name="clock-o" />{{ artDetailData.time }}
+                <van-icon class="vanIcon" name="clock-o" />{{ artDetailData.time }}
             </li>
             <li>
-                <van-icon name="like" />{{ artDetailData.art_love }}
+                <van-icon @click="artLike" class="vanIcon" name="like" />{{ artDetailData.art_love }}
             </li>
             <li>
-                <van-icon name="eye" />{{ artDetailData.hits }}
+                <van-icon class="vanIcon" name="eye" />{{ artDetailData.hits }}
             </li>
         </ul>
         <CommentForm @commentFormContent="getFormContent" />

@@ -1,3 +1,5 @@
+import { type } from "os";
+
 export type IndexObj = {
     id: number,
     title: string,
@@ -25,6 +27,28 @@ export type replyData = {
 }
 
 export type artPostType = {
-    name:string,
-    content:string
+    name: string,
+    content: string
+}
+
+export type talkListType = {
+    id: string,
+    content: string,
+    time: string,
+    zan: string
+}
+
+export type guestBookType = {
+    id: string;
+    name: string;
+    content: string;
+    city: string;
+    time: string;
+    huifu_content: string;
+    huifu_time: string;
+}
+
+export type achiveType={
+    id:string,
+    title:string,
 }

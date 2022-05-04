@@ -10,6 +10,7 @@ const onChange = (index: number) => {
             break
         case 2:
             router.push('/guestbook')
+            break
         case 3:
             router.push('/archive')
             break

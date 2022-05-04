@@ -8,9 +8,8 @@ const emit = defineEmits<{
 
 const state = reactive({
     vCode: 0,
+    userCode:''
 })
-
-const userCode= ref(0)
 
 function rand(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -19,13 +18,18 @@ const change = () => {
     state.vCode = Number(rand(1000, 9999))
     emit('veriCode', state.vCode)
 }
-emit('userCode',userCode)
+
+const uChange=()=>{
+    emit('userCode', Number(state.userCode))
+}
+
+defineExpose({change})
 
 </script>
            
 <template>
     <van-cell-group inset class="veriCode">
-        <van-field v-model="userCode" center clearable label="验证码" placeholder="请输入验证码">
+        <van-field v-model="state.userCode" @change="uChange" center clearable label="验证码" placeholder="请输入验证码">
             <template #button>
                 <van-button size="small" @click="change" type="default">{{ state.vCode == 0 ? '获取验证码' : state.vCode }}</van-button>
             </template>

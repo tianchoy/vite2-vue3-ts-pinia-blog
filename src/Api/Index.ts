@@ -6,7 +6,18 @@ export const getIndexList = () => {
     })
 }
 
+export const getTalkData=(page:Number)=>{
+    return instance.post('getSay.php?page='+page)
+}
+
+export const postTalkLike = (id:string)=>{
+    console.log(id)
+    return instance.post('say_like.php?id='+id)
+}
+
 
 export default {
-    getIndexList
+    getIndexList,
+    getTalkData,
+    postTalkLike
 }

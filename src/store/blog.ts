@@ -1,13 +1,18 @@
 import {defineStore} from 'pinia'
-import { getIndexList } from '../Api/Index'
-import {IndexObj} from '../plugin/Type'
+import { getIndexList,getTalkData,postTalkLike } from '../Api/Index'
+import {IndexObj,talkListType} from '../plugin/Type'
 
 const blogStore = defineStore({
     id:'blog',
     state:()=>({
         title:'小田的博客',
         IndexList: [] as Array<IndexObj>,
-        Loading:true
+        Loading:true,
+        talkListData:[] as Array<talkListType>,
+        talkState:{
+            perPage : 1,
+            total : ''
+        }
     }),
     getters:{},
     actions:{
@@ -16,9 +21,18 @@ const blogStore = defineStore({
             const res = await getIndexList()
             this.$state.IndexList = res.data.data
             this.$state.Loading = false
-        }
+        },
         //获取说说数据
-        
+        async getTalkList(val:Number){
+            const res = await getTalkData(val)
+            this.$state.talkListData = res.data.data
+            this.$state.talkState.total= res.data.total
+        },
+        //说说点赞
+        async postSayLike(id:string){
+            const res = await postTalkLike(id)
+            console.log(res)
+        }
     }
 
 })

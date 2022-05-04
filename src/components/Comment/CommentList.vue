@@ -9,20 +9,19 @@ const { commentListContent } = toRefs(props)
            
 <template>
     <div class="comment-list">
-        <div class="tit">评论：</div>
         <div class="content-box" v-for="item in commentListContent" :key="item.id">
             <div class="com-title">
                 <span class="NickName">
-                    <van-icon name="friends" />
+                    <van-icon class="vanIcon" name="friends" />
                     {{ item.name }}
                     <span class="city" v-if="item.city != ''">
-                        <van-icon name="location-o" />
+                        <van-icon class="vanIcon" name="location-o" />
                         {{ item.city }}
                     </span>
                 </span>
-                <span class="sendTime">{{ item.pl_time }}</span>
+                <span class="sendTime">{{ item.pl_time || item.time }}</span>
             </div>
-            <div class="com-content">{{ item.pl_content }}</div>
+            <div class="com-content">{{ item.pl_content || item.content }}</div>
         </div>
     </div>
 </template>
@@ -30,11 +29,6 @@ const { commentListContent } = toRefs(props)
 <style scoped lang='scss'>
 .comment-list {
     margin-top: 1rem;
-
-    .tit {
-        font-size: .5rem;
-        color: #999;
-    }
 
     .content-box {
         border: 1px solid #dcdfe6;
