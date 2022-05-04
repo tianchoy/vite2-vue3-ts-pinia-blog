@@ -5,6 +5,10 @@ let instance = axios.create({
     timeout: 3000,
 })
 
+let ins = axios.create({
+    baseURL:'/apis/',
+    timeout:3000
+})
 
 //请求拦截器
 instance.interceptors.request.use(

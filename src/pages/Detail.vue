@@ -25,7 +25,7 @@ const getFormContent = (val: any) => {
         id: id,
         name: val["name"],
         content:val["content"],
-        city: returnCitySN["cname"],
+        city: '',
         time: nowTime
     })
     detail.sendArtComment(postData).then(()=>{
