@@ -8,7 +8,6 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        //target:'http://tianchoy.com/api/',//正式服务器
         target: 'http://tc.com/',//测试服务器
         changeOrigin: true,
         ws: true,
