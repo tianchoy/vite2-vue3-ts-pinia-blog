@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia';
 import { onMounted ,unref} from 'vue';
 import TopNav from '../components/Bar/TopBar.vue';
 import guestBookStore from '../store/GuestBook'
+import blogSore from '../store/blog'
 import CommentList from '../components/Comment/CommentList.vue';
 import CommentForm from '../components/Comment/CommentForm.vue';
 import Pagination from '../components/pagination/Index.vue';
@@ -11,7 +12,8 @@ import moment from 'moment';
 
 const guestBook = guestBookStore()
 const {title,page,total,guestBookList} = storeToRefs(guestBook)
-
+const blog = blogSore()
+const {cityName} = storeToRefs(blog)
 const now = new Date
 const nowTime = moment(now).format('YYYY-MM-DD HH:mm:ss')
 
@@ -27,7 +29,7 @@ const getFormContent=(val:any)=>{
     let postData = qs.stringify({
         name: val["name"],
         content:val["content"],
-        city: '',
+        city: cityName.value,
         time: nowTime
     })
     guestBook.sendMessage(postData).then(()=>{

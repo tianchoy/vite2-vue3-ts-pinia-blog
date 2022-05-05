@@ -23,6 +23,7 @@ export const postLikeArt = (id:number)=>{
     return instance.post('art_like.php',id)
 }
 
+
 export default{
     getArtDetail,
     getNewsReply,

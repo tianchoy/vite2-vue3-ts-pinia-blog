@@ -15,9 +15,14 @@ export const postTalkLike = (id:string)=>{
     return instance.post('say_like.php?id='+id)
 }
 
+export const getCity = ()=>{
+    return instance.get('getCity.php')
+}
+
 
 export default {
     getIndexList,
     getTalkData,
-    postTalkLike
+    postTalkLike,
+    getCity
 }

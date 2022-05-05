@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import { getIndexList,getTalkData,postTalkLike } from '../Api/Index'
+import { getIndexList,getTalkData,postTalkLike,getCity} from '../Api/Index'
 import {IndexObj,talkListType} from '../plugin/Type'
 
 const blogStore = defineStore({
@@ -12,7 +12,8 @@ const blogStore = defineStore({
         talkState:{
             perPage : 1,
             total : ''
-        }
+        },
+        cityName:''
     }),
     getters:{},
     actions:{
@@ -32,6 +33,12 @@ const blogStore = defineStore({
         async postSayLike(id:string){
             const res = await postTalkLike(id)
             console.log(res)
+        },
+        //获取城市
+        async getCityInfo(){
+            const res = await getCity()
+            this.$state.cityName = res.data.cname
+            console.log(res.data.cname)
         }
     }
 

@@ -8,7 +8,6 @@ const detailStore = defineStore({
         Loading: true,
         artDetailData: <ArtDetailData>{},
         replyData: <replyData>{},
-        cityName:''
     }),
     getters: {},
     actions: {
@@ -31,7 +30,7 @@ const detailStore = defineStore({
         //发布评论
         async sendArtComment(postData:string){
             const res = await postComment(postData)
-        }
+        },
     }
 })
 

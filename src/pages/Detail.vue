@@ -3,14 +3,18 @@ import TopNav from '../components/Bar/TopBar.vue';
 import { onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router'
 import detailStore from '../store/Detail';
+import blogSore from '../store/blog'
 import CommentForm from '../components/Comment/CommentForm.vue';
 import { storeToRefs } from 'pinia';
 import CommentList from '../components/Comment/CommentList.vue';
 import moment from 'moment'
 import qs from 'qs'
 
+const blog = blogSore()
+
 const detail = detailStore()
 const { Loading, artDetailData, replyData } = storeToRefs(detail)
+const {cityName} = storeToRefs(blog)
 const router = useRoute()
 let id: number = Number(router.params.id)
 const now = new Date
@@ -18,14 +22,14 @@ const nowTime = moment(now).format('YYYY-MM-DD HH:mm:ss')
 onBeforeMount(() => {
     detail.getArtDetailData(id)
     detail.getArtCommentList(id)
+    blog.getCityInfo()
 })
 const getFormContent = (val: any) => {
-
     let postData = qs.stringify({
         id: id,
         name: val["name"],
         content:val["content"],
-        city: '',
+        city: cityName.value,
         time: nowTime
     })
     detail.sendArtComment(postData).then(()=>{
@@ -37,7 +41,7 @@ const artLike=(id:number)=>{
     detail.postArtLike(id)
 }
 </script>
-           
+       
 <template>
     <div class="container">
         <van-loading size="24px" vertical v-if="Loading">加载中...</van-loading>
