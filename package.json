@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueuse/core": "^8.4.2",
     "amfe-flexible": "^2.2.1",
     "autoprefixer": "^10.4.6",
     "axios": "^0.27.2",

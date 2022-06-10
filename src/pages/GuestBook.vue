@@ -32,6 +32,7 @@ const getFormContent=(val:any)=>{
         city: cityName.value,
         time: nowTime
     })
+    console.log(postData)
     guestBook.sendMessage(postData).then(()=>{
         guestBook.getGuestBookList(unref(page))
     })

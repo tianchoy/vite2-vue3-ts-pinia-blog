@@ -49,7 +49,7 @@ const { commentListContent } = toRefs(props)
                 color: #555;
 
                 .city {
-                    font-size: .1rem;
+                    font-size: .3rem;
                     margin-left: .2rem;
                 }
             }
