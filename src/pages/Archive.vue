@@ -5,7 +5,7 @@ import TopBar from '../components/Bar/TopBar.vue';
 import achiveStore from '../store/Achive'
 import Pagination from '../components/pagination/Index.vue';
 const achive = achiveStore()
-const {title,page,total,achiveData} = storeToRefs(achive)
+const {title,page,artTotal,achiveData} = storeToRefs(achive)
 
 onMounted(()=>{
     achive.getAchiveList(unref(page))
@@ -28,7 +28,7 @@ const getPageNumber=(page:number)=>{
                 </router-link>
             </li>
         </ul>
-        <Pagination @pageNumber="getPageNumber" :total="total" />
+        <Pagination @pageNumber="getPageNumber" :total="artTotal" />
     </div>
 </template>
            

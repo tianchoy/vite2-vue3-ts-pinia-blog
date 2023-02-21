@@ -7,7 +7,7 @@ const achiveStore = defineStore({
     state:()=>({
         title:'归档',
         page:1,
-        total:'',
+        artTotal:'',
         achiveData:[] as Array<achiveType>
     }),
     getters:{},
@@ -15,7 +15,7 @@ const achiveStore = defineStore({
         async getAchiveList(page:number){
             const res = await getArchiveData(page)
             this.$state.achiveData = res.data.data
-            this.$state.total = res.data.total
+            this.$state.artTotal = res.data.total
         }
     }
 })

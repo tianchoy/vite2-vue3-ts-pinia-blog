@@ -2,15 +2,18 @@
 import { ref } from 'vue'
 import blogSore from '../store/blog'
 import guestBookStore from '../store/GuestBook'
+import achiveStore from '../store/Achive'
 import TopBar from '../components/Bar/TopBar.vue';
 import img from '../assets/images/my.jpg'
 import { storeToRefs } from 'pinia';
 const title = ref('关于我')
 const blog = blogSore()
 const guestbook = guestBookStore()
+const archive = achiveStore()
 
 const {talkState} = storeToRefs(blog)
 const {total} = storeToRefs(guestbook)
+const {artTotal} = storeToRefs(archive)
 
 
 </script>
@@ -22,8 +25,8 @@ const {total} = storeToRefs(guestbook)
             <img :src="img" />
         </div>
         <div class="total">
-            <span>文章：{{ }}</span>
-            <span>说说：{{talkState.total }}</span>
+            <span>文章：{{ artTotal }}</span>
+            <span>说说：{{ talkState.total }}</span>
             <span>留言：{{ total }}</span>
         </div>
         <div class="tips">
