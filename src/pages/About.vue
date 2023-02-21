@@ -1,23 +1,61 @@
 <script setup lang='ts'>
-import {ref} from 'vue'
+import { ref } from 'vue'
+import blogSore from '../store/blog'
+import guestBookStore from '../store/GuestBook'
 import TopBar from '../components/Bar/TopBar.vue';
+import img from '../assets/images/my.jpg'
+import { storeToRefs } from 'pinia';
 const title = ref('关于我')
+const blog = blogSore()
+const guestbook = guestBookStore()
+
+const {talkState} = storeToRefs(blog)
+const {total} = storeToRefs(guestbook)
+
 
 </script>
            
 <template>
     <div class="container">
         <TopBar :title="title" :left-arrow="false" />
-        <div class="about">
-            <p>兜兜转转又回到了前端</p>
-            <p>浪费了很多时间，未来认真对待</p>
+        <div class="userImg">
+            <img :src="img" />
+        </div>
+        <div class="total">
+            <span>文章：{{ }}</span>
+            <span>说说：{{talkState.total }}</span>
+            <span>留言：{{ total }}</span>
+        </div>
+        <div class="tips">
+            <div>我是田超,感谢你来到这里!</div>
         </div>
     </div>
 </template>
            
 <style scoped lang='scss'>
-.about{
+.userImg {
+    margin: 10% auto;
+
+    img {
+        display: block;
+        margin: 0 auto;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+}
+
+.tips {
+    line-height: 80px;
+    font-size: 14px;
     text-align: center;
-    font-size: .4rem;
+}
+
+.total {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 30px;
+    font-size: 14px;
+    text-align: center;
 }
 </style>

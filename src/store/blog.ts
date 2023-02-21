@@ -32,7 +32,6 @@ const blogStore = defineStore({
         //说说点赞
         async postSayLike(id:string){
             const res = await postTalkLike(id)
-            console.log(res)
         },
         //获取城市
         async getCityInfo(){
