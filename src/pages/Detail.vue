@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import TopNav from '../components/Bar/TopBar.vue';
-import { onBeforeMount } from 'vue'
+import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import detailStore from '../store/Detail';
 import blogSore from '../store/blog'
@@ -19,7 +19,7 @@ const router = useRoute()
 let id: number = Number(router.params.id)
 const now = new Date
 const nowTime = moment(now).format('YYYY-MM-DD HH:mm:ss')
-onBeforeMount(() => {
+onMounted(() => {
     detail.getArtDetailData(id)
     detail.getArtCommentList(id)
     blog.getCityInfo()

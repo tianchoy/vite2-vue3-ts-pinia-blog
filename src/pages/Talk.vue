@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import { storeToRefs } from 'pinia';
-import {onBeforeMount, ref} from 'vue'
+import {onMounted, ref} from 'vue'
 import TopNav from '../components/Bar/TopBar.vue';
 import blogStore from '../store/blog'
 import Pagination from '../components/pagination/Index.vue';
@@ -8,7 +8,7 @@ const talk = blogStore()
 const { talkListData ,talkState } = storeToRefs(talk)
 const title = ref('说说')
 
-onBeforeMount(()=>{
+onMounted(()=>{
     talk.getTalkList(1)
 })
 

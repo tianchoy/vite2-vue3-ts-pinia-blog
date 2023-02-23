@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { onBeforeMount, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import blogSore from '../store/blog'
 import guestBookStore from '../store/GuestBook'
 import achiveStore from '../store/Achive'
@@ -8,12 +8,10 @@ import img from '../assets/images/my.jpg'
 import { storeToRefs } from 'pinia';
 const title = ref('关于我')
 const blog = blogSore()
-const guestbook = guestBookStore()
-const archive = achiveStore()
 
 const { hitokotoInfo } = storeToRefs(blog)
 
-onBeforeMount(() => {
+onMounted(() => {
     blog.getHitokotoInfo()
 })
 
