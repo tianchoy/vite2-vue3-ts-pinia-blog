@@ -13,7 +13,7 @@ const routes:Array<RouteRecordRaw> = [
     {
         path:'/talk',
         meta:{
-            title:'首页',
+            title:'说说',
             requiresAuth:false
         },
         component:()=>import('../pages/Talk.vue')
@@ -21,7 +21,7 @@ const routes:Array<RouteRecordRaw> = [
     {
         path:'/guestbook',
         meta:{
-            title:'首页',
+            title:'留言板',
             requiresAuth:false
         },
         component:()=>import('../pages/GuestBook.vue')
@@ -29,7 +29,7 @@ const routes:Array<RouteRecordRaw> = [
     {
         path:'/archive',
         meta:{
-            title:'首页',
+            title:'归档',
             requiresAuth:false
         },
         component:()=>import('../pages/Archive.vue')
@@ -37,7 +37,7 @@ const routes:Array<RouteRecordRaw> = [
     {
         path:'/about',
         meta:{
-            title:'首页',
+            title:'关于我',
             requiresAuth:false
         },
         component:()=>import('../pages/About.vue')
@@ -45,7 +45,7 @@ const routes:Array<RouteRecordRaw> = [
     {
         path:'/detail/:id',
         meta:{
-            title:'首页',
+            title:'文章详情',
             requiresAuth:false
         },
         component:()=>import('../pages/Detail.vue')
