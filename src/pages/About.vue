@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { ref } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 import blogSore from '../store/blog'
 import guestBookStore from '../store/GuestBook'
 import achiveStore from '../store/Achive'
@@ -11,9 +11,11 @@ const blog = blogSore()
 const guestbook = guestBookStore()
 const archive = achiveStore()
 
-const {talkState} = storeToRefs(blog)
-const {total} = storeToRefs(guestbook)
-const {artTotal} = storeToRefs(archive)
+const { hitokotoInfo } = storeToRefs(blog)
+
+onBeforeMount(() => {
+    blog.getHitokotoInfo()
+})
 
 
 </script>
@@ -24,13 +26,9 @@ const {artTotal} = storeToRefs(archive)
         <div class="userImg">
             <img :src="img" />
         </div>
-        <div class="total">
-            <span>文章：{{ artTotal }}</span>
-            <span>说说：{{ talkState.total }}</span>
-            <span>留言：{{ total }}</span>
-        </div>
         <div class="tips">
-            <div>我是田超,感谢你来到这里!</div>
+            <p>{{ hitokotoInfo.hitokoto }}</p>
+            <p class="creator">From:{{ hitokotoInfo.creator }}</p>
         </div>
     </div>
 </template>
@@ -52,13 +50,9 @@ const {artTotal} = storeToRefs(archive)
     line-height: 80px;
     font-size: 14px;
     text-align: center;
-}
-
-.total {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin-bottom: 30px;
-    font-size: 14px;
-    text-align: center;
+    .creator{
+        text-align: right;
+        line-height: 0;
+    }
 }
 </style>

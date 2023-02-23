@@ -19,10 +19,15 @@ export const getCity = ()=>{
     return instance.get('getCity.php')
 }
 
+export const getHitokoto = ()=>{
+    return instance.get('https://v1.hitokoto.cn/?c=e')
+}
+
 
 export default {
     getIndexList,
     getTalkData,
     postTalkLike,
-    getCity
+    getCity,
+    
 }

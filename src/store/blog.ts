@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia'
-import { getIndexList,getTalkData,postTalkLike,getCity} from '../Api/Index'
-import {IndexObj,talkListType} from '../plugin/Type'
+import { getIndexList,getTalkData,postTalkLike,getCity,getHitokoto} from '../Api/Index'
+import {IndexObj,talkListType,HitokotoType} from '../plugin/Type'
 
 const blogStore = defineStore({
     id:'blog',
@@ -13,7 +13,8 @@ const blogStore = defineStore({
             perPage : 1,
             total : ''
         },
-        cityName:''
+        cityName:'',
+        hitokotoInfo:{} as HitokotoType
     }),
     getters:{},
     actions:{
@@ -28,6 +29,7 @@ const blogStore = defineStore({
             const res = await getTalkData(val)
             this.$state.talkListData = res.data.data
             this.$state.talkState.total= res.data.total
+            console.log(res)
         },
         //说说点赞
         async postSayLike(id:string){
@@ -38,6 +40,12 @@ const blogStore = defineStore({
             const res = await getCity()
             this.$state.cityName = res.data.cname
             console.log(res.data.cname)
+        },
+        //获取一言
+        async getHitokotoInfo(){
+            const res = await getHitokoto()
+            this.$state.hitokotoInfo = res.data
+            console.log(res.data)
         }
     }
 

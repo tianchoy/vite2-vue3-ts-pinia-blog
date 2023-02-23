@@ -52,3 +52,8 @@ export type achiveType={
     id:string,
     title:string,
 }
+
+export type HitokotoType = {
+    hitokoto:string,
+    creator:string
+}
