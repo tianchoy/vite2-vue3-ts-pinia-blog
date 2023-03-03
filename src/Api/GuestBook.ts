@@ -1,15 +1,16 @@
 import instance from "./axios";
+import pathURL from "./base";
 
-export const getGuestBookList = (page:number)=> {
-    return instance.get('getGuestBook.php?page='+page)
+export const getGuestBookList = (page: number) => {
+    return instance.get(pathURL.getGuestBookList + page)
 }
 
-export const postComment = (postContent:string) =>{
-    return instance.post('postGuestBook.php',postContent)
-} 
+export const postComment = (postContent: string) => {
+    return instance.post(pathURL.postGuestBook, postContent)
+}
 
 
-export default{
+export default {
     getGuestBookList,
     postComment
 }

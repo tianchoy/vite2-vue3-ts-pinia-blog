@@ -5,10 +5,19 @@ let instance = axios.create({
     timeout: 3000,
 })
 
-let ins = axios.create({
-    baseURL:'/apis/',
-    timeout:3000
-})
+const errorHandle = (state: number, info: string) => {
+    switch (state) {
+        case 403:
+            console.log('服务器拒绝访问');
+            break;
+        case 500:
+            console.log('服务器无响应');
+            break;
+        default:
+            console.log(info);
+            break;
+    }
+}
 
 //请求拦截器
 instance.interceptors.request.use(
@@ -23,10 +32,11 @@ instance.interceptors.request.use(
 //响应拦截器
 instance.interceptors.response.use(
     res => {
-        return res
+        return res.status === 200 ? Promise.resolve(res) : Promise.reject(res)
     },
     error => {
-        return Promise.reject(error)
+        const { response } = error
+        errorHandle(response.status, response.info)
     }
 )
 

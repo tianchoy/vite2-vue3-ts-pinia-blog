@@ -1,30 +1,31 @@
 import instance from './axios'
+import pathURL from './base'
 
 //getNewsDetailData
 
 export const getArtDetail = (id: number) => {
     return instance({
-        url: 'getArtDetail.php?id=' + id
+        url: pathURL.getArtDetail + id
     })
 }
 
 //get article list data
-export const getNewsReply = (id:number) =>{
-    return instance.post('getArtReply.php?id='+id)
+export const getNewsReply = (id: number) => {
+    return instance.post(pathURL.getArtReply + id)
 }
 //post reply data
-export const postComment = (postContent:string) =>{
-    return instance.post('postComment.php',postContent)
+export const postComment = (postContent: string) => {
+    return instance.post(pathURL.postArtComm, postContent)
 }
 
 //post like artcle data
 
-export const postLikeArt = (id:number)=>{
-    return instance.post('art_like.php',id)
+export const postLikeArt = (id: number) => {
+    return instance.post(pathURL.ArtLike, id)
 }
 
 
-export default{
+export default {
     getArtDetail,
     getNewsReply,
     postComment,

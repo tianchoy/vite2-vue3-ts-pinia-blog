@@ -1,18 +1,21 @@
 <script setup lang='ts'>
-import { onMounted} from 'vue'
+import { onMounted, ref } from 'vue'
 import { storeToRefs } from 'pinia';
 import TopNav from '../components/Bar/TopBar.vue';
+import LoadingVue from '../components/Loading/loading.vue';
 import blogStore from '../store/blog'
 const blog = blogStore()
-const { title,IndexList,Loading} = storeToRefs(blog)
-onMounted(()=>{
+const { title, IndexList, Loading } = storeToRefs(blog)
+const loading = ref<boolean>(true)
+onMounted(() => {
     blog.getIndexData()
+    loading.value = false
 })
 </script>
 <template>
+    <TopNav :title="title" :left-arrow="false" />
+    <LoadingVue :isLoading="loading" />
     <div class="container">
-        <TopNav :title="title" :left-arrow="false" />
-        <van-loading size="24px" vertical v-if="Loading">加载中...</van-loading>
         <ul class="index-box">
             <li v-for="item in IndexList" :key="item.id">
                 <router-link :to="{ path: `/detail/${item.id}` }" class="title">

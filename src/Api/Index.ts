@@ -1,26 +1,27 @@
 import instance from "./axios";
+import pathURL from './base'
 
 export const getIndexList = () => {
     return instance({
-        url: 'getIndex.php'
+        url: pathURL.getIndexList
     })
 }
 
-export const getTalkData=(page:Number)=>{
-    return instance.post('getSay.php?page='+page)
+export const getTalkData = (page: Number) => {
+    return instance.post(pathURL.getSayList + page)
 }
 
-export const postTalkLike = (id:string)=>{
+export const postTalkLike = (id: string) => {
     console.log(id)
-    return instance.post('say_like.php?id='+id)
+    return instance.post(pathURL.sayLike + id)
 }
 
-export const getCity = ()=>{
-    return instance.get('getCity.php')
+export const getCity = () => {
+    return instance.get(pathURL.getCityInfo)
 }
 
-export const getHitokoto = ()=>{
-    return instance.get('https://v1.hitokoto.cn/?c=e')
+export const getHitokoto = () => {
+    return instance.get(pathURL.getHitokotoInfo)
 }
 
 
@@ -29,5 +30,5 @@ export default {
     getTalkData,
     postTalkLike,
     getCity,
-    
+
 }
