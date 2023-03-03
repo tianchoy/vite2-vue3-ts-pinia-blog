@@ -5,18 +5,18 @@ const props = defineProps({
     total: String,
 });
 const emit = defineEmits<{
-  (e: 'pageNumber', page: number): void
+    (e: 'pageNumber', page: number): void
 }>()
 
 let { total } = toRefs(props)
 const selectPageNumber = (val: number) => {
-    emit('pageNumber',val)
+    emit('pageNumber', val)
 }
 
 </script>
            
 <template>
-    <div>
+    <div v-if="Number(total) > 10">
         <van-pagination v-model="currentPage" :total-items="total" @change="selectPageNumber" :items-per-page="10">
             <template #prev-text>
                 <van-icon name="arrow-left" />
@@ -29,5 +29,4 @@ const selectPageNumber = (val: number) => {
     </div>
 </template>
            
-<style scoped lang='scss'>
-</style>
+<style scoped lang='scss'></style>

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { ArtDetailData,replyData } from '../plugin/Type'
-import { getArtDetail, getNewsReply,postComment,postLikeArt} from '../Api/Detail'
+import { ArtDetailData, replyData } from '../plugin/Type'
+import { getArtDetail, getNewsReply, postComment, postLikeArt } from '../Api/Detail'
 
 const detailStore = defineStore({
     id: 'detail',
@@ -23,12 +23,11 @@ const detailStore = defineStore({
             this.$state.replyData = res.data.data
         },
         //文章点赞
-        async postArtLike(id:number){
+        async postArtLike(id: number) {
             const res = await postLikeArt(id)
-            console.log(res)
         },
         //发布评论
-        async sendArtComment(postData:string){
+        async sendArtComment(postData: string) {
             const res = await postComment(postData)
         },
     }

@@ -5,15 +5,15 @@ import TopBar from '../components/Bar/TopBar.vue';
 import achiveStore from '../store/Achive'
 import Pagination from '../components/pagination/Index.vue';
 const achive = achiveStore()
-const {title,page,artTotal,achiveData} = storeToRefs(achive)
+const { title, page, artTotal, achiveData } = storeToRefs(achive)
 
-onMounted(()=>{
+onMounted(() => {
     achive.getAchiveList(unref(page))
 })
 
-const getPageNumber=(page:number)=>{
+const getPageNumber = (page: number) => {
     achive.getAchiveList(unref(page))
-}   
+}
 
 </script>
            
@@ -22,7 +22,7 @@ const getPageNumber=(page:number)=>{
         <TopBar :title="title" :left-arrow="false" />
         <ul class="achiveBox">
             <li class="achive-item" v-for="item in achiveData" :key="item.id">
-                <span class="item-title">{{item.title}}</span>
+                <span class="item-title">{{ item.title }}</span>
                 <router-link :to="{ path: `/detail/${item.id}` }" class="title">
                     <van-button type="primary">查看</van-button>
                 </router-link>
@@ -33,10 +33,11 @@ const getPageNumber=(page:number)=>{
 </template>
            
 <style scoped lang='scss'>
-.achiveBox{
+.achiveBox {
     margin-bottom: .5rem;
 }
-.achive-item{
+
+.achive-item {
     display: flex;
     justify-content: space-between;
     margin: .5rem 0;

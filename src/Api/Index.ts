@@ -12,7 +12,6 @@ export const getTalkData = (page: Number) => {
 }
 
 export const postTalkLike = (id: string) => {
-    console.log(id)
     return instance.post(pathURL.sayLike + id)
 }
 
